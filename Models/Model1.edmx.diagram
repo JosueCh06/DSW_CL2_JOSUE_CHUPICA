@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67c7d53440904ded9d21f99899b52a3f" Name="Diagram1">
+        <EntityTypeShape EntityType="FUENTESODAModel.BOLETA" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FUENTESODAModel.CATEGORIA" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FUENTESODAModel.CLIENTE" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FUENTESODAModel.DETALLEBOLETA" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FUENTESODAModel.DISTRITO" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FUENTESODAModel.PRODUCTO" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FUENTESODAModel.VENDEDOR" Width="1.5" PointX="8" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="FUENTESODAModel.FK__DETALLEBO__NUM_B__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="FUENTESODAModel.FK__PRODUCTO__IDE_CA__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="FUENTESODAModel.FK__CLIENTE__IDE_DIS__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="FUENTESODAModel.FK__DETALLEBO__IDE_P__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="FUENTESODAModel.FK__VENDEDOR__IDE_DI__2E1BDC42" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

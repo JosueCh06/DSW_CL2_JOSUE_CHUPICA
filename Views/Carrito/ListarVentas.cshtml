@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DSW_CL2_JOSUE_CHUPICA.Models.BOLETA>
+
+@{
+    ViewBag.Title = "ListarVentas";
+}
+
+<h2>LISTADO DE VENTAS</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NUM_BOL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FEC_BOL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUBTOTAL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IVA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TOTAL)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUM_BOL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FEC_BOL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUBTOTAL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IVA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TOTAL)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

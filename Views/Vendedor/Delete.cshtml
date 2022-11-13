@@ -1,0 +1,88 @@
+﻿@model DSW_CL2_JOSUE_CHUPICA.Models.VENDEDOR
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>ELIMINAR AL VENDEDOR</h2>
+
+<h3>¿Seguro de eliminar al vendedor: @Html.DisplayFor(model => model.NOM_VEN)?</h3>
+<div>
+    <h4>VENDEDOR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDE_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDE_VEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOM_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOM_VEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APE_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APE_VEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIR_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIR_VEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEL_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEL_VEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDE_DIS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISTRITO.DES_DIS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COR_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COR_VEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUE_VEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUE_VEN)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("REGRESAR", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DSW_CL2_JOSUE_CHUPICA.Models.VENDEDOR>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>LISTA DE VENDEDORES</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Vendedor", "Create", null, null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-striped table-responsive">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            NOMBRES
+        </th>
+        <th>
+            APELLIDOS
+        </th>
+        <th>
+            DIRECCION
+        </th>
+        <th>
+            TELEFONO
+        </th>
+        <th>
+            DISTRITO
+        </th>
+        <th>
+            CORREO
+        </th>
+        <th>
+            SUELDO
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDE_VEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOM_VEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APE_VEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DIR_VEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEL_VEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DISTRITO.DES_DIS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COR_VEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUE_VEN)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IDE_VEN }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.IDE_VEN }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.IDE_VEN })
+        </td>
+    </tr>
+}
+
+</table>

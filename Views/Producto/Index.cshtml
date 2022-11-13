@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DSW_CL2_JOSUE_CHUPICA.Models.PRODUCTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>LISTA DE PRODUCTOS</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Producto", "Create", null, null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered table-responsive table-striped">
+    <tr>
+        <th class="text-center">
+            ID
+        </th>
+        <th>
+            DESCRIPCION
+        </th>
+        <th class="text-center">
+            CATEGORIA
+        </th>
+        <th class="text-center">
+            PRECIO
+        </th>
+        <th class="text-center">
+            STOCK
+        </th>
+        <th class="text-center">
+            IMAGEN
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IDE_PRO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DES_PRO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CATEGORIA.DES_CAT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRE_PRO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.STO_PRO)
+    </td>
+    <td>
+        <img width="100" height="100" src="@Url.Action("getImage","Producto", new {id=item.IDE_PRO})" />
+    </td>
+    <td class="text-center">
+        @Html.ActionLink("Agregar", "AgregarCarrito", "Carrito", new { id = item.IDE_PRO }, new
+           { @class = "btn btn-success" })
+    </td>
+</tr>
+}
+
+</table>

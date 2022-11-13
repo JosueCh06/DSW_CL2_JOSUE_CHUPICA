@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FUENTESODAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BOLETA">
+    <Key>
+      <PropertyRef Name="NUM_BOL" />
+    </Key>
+    <Property Name="NUM_BOL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FEC_BOL" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SUBTOTAL" Type="Double" />
+    <Property Name="IVA" Type="Double" />
+    <Property Name="TOTAL" Type="Double" />
+    <NavigationProperty Name="DETALLEBOLETA" Relationship="Self.FK__DETALLEBO__NUM_B__32E0915F" FromRole="BOLETA" ToRole="DETALLEBOLETA" />
+  </EntityType>
+  <EntityType Name="CATEGORIA">
+    <Key>
+      <PropertyRef Name="IDE_CAT" />
+    </Key>
+    <Property Name="IDE_CAT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DES_CAT" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__PRODUCTO__IDE_CA__267ABA7A" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="IDE_CLI" />
+    </Key>
+    <Property Name="IDE_CLI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOM_CLI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MOV_CLI" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="IDE_DIS" Type="Int32" Nullable="false" />
+    <Property Name="COR_CLI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DISTRITO" Relationship="Self.FK__CLIENTE__IDE_DIS__2B3F6F97" FromRole="CLIENTE" ToRole="DISTRITO" />
+  </EntityType>
+  <EntityType Name="DETALLEBOLETA">
+    <Key>
+      <PropertyRef Name="ID_DET_BOLETA" />
+    </Key>
+    <Property Name="ID_DET_BOLETA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NUM_BOL" Type="Int32" Nullable="false" />
+    <Property Name="IDE_PRO" Type="Int32" Nullable="false" />
+    <Property Name="CAN_ART" Type="Int32" Nullable="false" />
+    <Property Name="TOTAL" Type="Double" />
+    <NavigationProperty Name="BOLETA" Relationship="Self.FK__DETALLEBO__NUM_B__32E0915F" FromRole="DETALLEBOLETA" ToRole="BOLETA" />
+    <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__DETALLEBO__IDE_P__33D4B598" FromRole="DETALLEBOLETA" ToRole="PRODUCTO" />
+  </EntityType>
+  <EntityType Name="DISTRITO">
+    <Key>
+      <PropertyRef Name="IDE_DIS" />
+    </Key>
+    <Property Name="IDE_DIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DES_DIS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CLIENTE__IDE_DIS__2B3F6F97" FromRole="DISTRITO" ToRole="CLIENTE" />
+    <NavigationProperty Name="VENDEDOR" Relationship="Self.FK__VENDEDOR__IDE_DI__2E1BDC42" FromRole="DISTRITO" ToRole="VENDEDOR" />
+  </EntityType>
+  <EntityType Name="PRODUCTO">
+    <Key>
+      <PropertyRef Name="IDE_PRO" />
+    </Key>
+    <Property Name="IDE_PRO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DES_PRO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDE_CAT" Type="Int32" Nullable="false" />
+    <Property Name="PRE_PRO" Type="Double" Nullable="false" />
+    <Property Name="STO_PRO" Type="Int32" Nullable="false" />
+    <Property Name="IMG_PRO" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="CATEGORIA" Relationship="Self.FK__PRODUCTO__IDE_CA__267ABA7A" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+    <NavigationProperty Name="DETALLEBOLETA" Relationship="Self.FK__DETALLEBO__IDE_P__33D4B598" FromRole="PRODUCTO" ToRole="DETALLEBOLETA" />
+  </EntityType>
+  <EntityType Name="VENDEDOR">
+    <Key>
+      <PropertyRef Name="IDE_VEN" />
+    </Key>
+    <Property Name="IDE_VEN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOM_VEN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APE_VEN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DIR_VEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TEL_VEN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="IDE_DIS" Type="Int32" Nullable="false" />
+    <Property Name="COR_VEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SUE_VEN" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="DISTRITO" Relationship="Self.FK__VENDEDOR__IDE_DI__2E1BDC42" FromRole="VENDEDOR" ToRole="DISTRITO" />
+  </EntityType>
+  <Association Name="FK__DETALLEBO__NUM_B__32E0915F">
+    <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="1" />
+    <End Role="DETALLEBOLETA" Type="Self.DETALLEBOLETA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BOLETA">
+        <PropertyRef Name="NUM_BOL" />
+      </Principal>
+      <Dependent Role="DETALLEBOLETA">
+        <PropertyRef Name="NUM_BOL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PRODUCTO__IDE_CA__267ABA7A">
+    <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIA">
+        <PropertyRef Name="IDE_CAT" />
+      </Principal>
+      <Dependent Role="PRODUCTO">
+        <PropertyRef Name="IDE_CAT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CLIENTE__IDE_DIS__2B3F6F97">
+    <End Role="DISTRITO" Type="Self.DISTRITO" Multiplicity="1" />
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DISTRITO">
+        <PropertyRef Name="IDE_DIS" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="IDE_DIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DETALLEBO__IDE_P__33D4B598">
+    <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="1" />
+    <End Role="DETALLEBOLETA" Type="Self.DETALLEBOLETA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCTO">
+        <PropertyRef Name="IDE_PRO" />
+      </Principal>
+      <Dependent Role="DETALLEBOLETA">
+        <PropertyRef Name="IDE_PRO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VENDEDOR__IDE_DI__2E1BDC42">
+    <End Role="DISTRITO" Type="Self.DISTRITO" Multiplicity="1" />
+    <End Role="VENDEDOR" Type="Self.VENDEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DISTRITO">
+        <PropertyRef Name="IDE_DIS" />
+      </Principal>
+      <Dependent Role="VENDEDOR">
+        <PropertyRef Name="IDE_DIS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FUENTESODAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BOLETA" EntityType="Self.BOLETA" />
+    <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+    <EntitySet Name="DETALLEBOLETA" EntityType="Self.DETALLEBOLETA" />
+    <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" />
+    <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+    <EntitySet Name="VENDEDOR" EntityType="Self.VENDEDOR" />
+    <AssociationSet Name="FK__DETALLEBO__NUM_B__32E0915F" Association="Self.FK__DETALLEBO__NUM_B__32E0915F">
+      <End Role="BOLETA" EntitySet="BOLETA" />
+      <End Role="DETALLEBOLETA" EntitySet="DETALLEBOLETA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PRODUCTO__IDE_CA__267ABA7A" Association="Self.FK__PRODUCTO__IDE_CA__267ABA7A">
+      <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CLIENTE__IDE_DIS__2B3F6F97" Association="Self.FK__CLIENTE__IDE_DIS__2B3F6F97">
+      <End Role="DISTRITO" EntitySet="DISTRITO" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETALLEBO__IDE_P__33D4B598" Association="Self.FK__DETALLEBO__IDE_P__33D4B598">
+      <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+      <End Role="DETALLEBOLETA" EntitySet="DETALLEBOLETA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VENDEDOR__IDE_DI__2E1BDC42" Association="Self.FK__VENDEDOR__IDE_DI__2E1BDC42">
+      <End Role="DISTRITO" EntitySet="DISTRITO" />
+      <End Role="VENDEDOR" EntitySet="VENDEDOR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
